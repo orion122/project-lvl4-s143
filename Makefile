@@ -2,7 +2,7 @@ install:
 	composer install
 
 lint:
-	composer run-script phpcs -- --standard=PSR2 routes
+	composer run-script phpcs -- --standard=PSR2 routes app
 
 test:
 	phpunit
