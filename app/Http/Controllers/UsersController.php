@@ -8,7 +8,7 @@ class UsersController extends Controller
 {
     public function users()
     {
-        $users = \App\User::paginate(3);
+        $users = \App\User::paginate(5);
 
         return view('users')->with('users', $users);
     }
