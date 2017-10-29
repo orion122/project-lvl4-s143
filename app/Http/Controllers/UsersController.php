@@ -8,8 +8,8 @@ class UsersController extends Controller
 {
     public function users()
     {
-        $users = \App\User::all();
+        $users = \App\User::paginate(3);
 
-        return $users;
+        return view('users')->with('users', $users);
     }
 }
