@@ -9,3 +9,6 @@ test:
 
 run:
 	php artisan serve
+
+migrate:
+	heroku run php artisan migrate
