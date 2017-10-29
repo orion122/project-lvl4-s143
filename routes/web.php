@@ -21,3 +21,5 @@ Auth::routes();
 //Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/users', 'UsersController@users')->middleware('auth')->name('users');
+
+Route::get('/account', 'AccountController@account')->middleware('auth')->name('account');
