@@ -17,8 +17,8 @@
                     <li class="nav-item {{ Request::path() == '/' ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('index') }}">Home</a>
                     </li>
-                    <li class="nav-item {{ Request::path() == 'users' ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('users') }}">Users</a>
+                    <li class="nav-item {{ Request::path() == 'users.index' ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('users.index') }}">Users</a>
                     </li>
                 </ul>
 
@@ -45,7 +45,7 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('account') }}">Account</a>
+                                    <a class="dropdown-item" href="{{ route('users.show', Auth::user()->id) }}">Account</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
