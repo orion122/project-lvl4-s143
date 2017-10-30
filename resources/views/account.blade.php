@@ -32,10 +32,21 @@
 
                     <div class="my-3">
                         <button type="submit" class="btn btn-primary">
-                            Change
+                            Edit account
                         </button>
                     </div>
 
+                </form>
+
+                <form class="" method="POST" action="{{ route('users.destroy', Auth::user()->id) }}">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+
+                    <div class="my-3">
+                        <button type="submit" class="btn btn-primary">
+                            Remove account
+                        </button>
+                    </div>
                 </form>
 
                 @if(session()->has('message'))
