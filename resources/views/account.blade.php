@@ -5,31 +5,44 @@
         <div class="card col-md-4 my-3 mx-auto">
             <div class="card-block">
 
-                <h2 class="card-title my-3">Account</h2>
+                <form class="" method="POST" action="{{ route('users.update', Auth::user()->id) }}">
+                    {{ csrf_field() }}
+                    {{ method_field('PATCH') }}
 
-                <div class="form-group row">
-                    <label for="example-text-input" class="col-3 col-form-label">Name:</label>
-                    <div class="col-8">
-                        <input class="form-control" type="text" value="{{ Auth::user()->name }}" id="example-text-input">
-                    </div>
-                </div>
+                    <h2 class="card-title my-3">Account</h2>
 
-
-                <fieldset disabled>
                     <div class="form-group row">
-                        <label for="example-text-input" class="col-3 col-form-label">E-mail:</label>
+                        <label for="example-text-input" class="col-3 col-form-label">Name:</label>
                         <div class="col-8">
-                            <input class="form-control" type="text" value="{{ Auth::user()->email }}" id="example-text-input">
+                            <input class="form-control" name="name" type="text" value="{{ Auth::user()->name }}" id="example-text-input">
                         </div>
                     </div>
-                </fieldset>
 
-                <div class="my-3">
-                    <button type="submit" class="btn btn-primary">
-                        Change
-                    </button>
-                </div>
 
+                    <fieldset disabled>
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-3 col-form-label">E-mail:</label>
+                            <div class="col-8">
+                                <input class="form-control" name="email" type="text" value="{{ Auth::user()->email }}" id="example-text-input">
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <input type="hidden" name="id" value="{{ Auth::user()->id }}">
+
+                    <div class="my-3">
+                        <button type="submit" class="btn btn-primary">
+                            Change
+                        </button>
+                    </div>
+
+                </form>
+
+                @if(session()->has('message'))
+                    <div class="alert alert-success">
+                        {{ session()->get('message') }}
+                    </div>
+                @endif
             </div>
         </div>
     </div>
