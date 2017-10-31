@@ -14,15 +14,17 @@
             </tr>
             </thead>
             <tbody>
+            @php ($iter = 1)
             @foreach($users as $user)
                 <tr>
-                    <th scope="row">{{ $user->id }}</th>
+                    <th scope="row">{{ $iter }}</th>
                     {{--<td><a href="domains/{{ $item->id }}">{{ $item->name }}</a></td>--}}
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->created_at }}</td>
                     <td>{{ $user->updated_at }}</td>
                 </tr>
+                @php ($iter++)
             @endforeach
             </tbody>
         </table>
