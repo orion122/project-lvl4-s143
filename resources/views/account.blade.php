@@ -31,7 +31,7 @@
                     <input type="hidden" name="id" value="{{ Auth::user()->id }}">
 
                     <div class="my-3">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary btn-block">
                             Edit account
                         </button>
                     </div>
@@ -43,7 +43,7 @@
                     {{ method_field('DELETE') }}
 
                     <div class="my-3">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-block btn-sm">
                             Remove account
                         </button>
                     </div>
