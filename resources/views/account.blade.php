@@ -15,6 +15,12 @@
                         <label for="example-text-input" class="col-3 col-form-label">Name:</label>
                         <div class="col-8">
                             <input class="form-control" name="name" type="text" value="{{ Auth::user()->name }}" id="example-text-input">
+
+                            @if ($errors->has('name'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('name') }}</strong>
+                                </span>
+                            @endif
                         </div>
                     </div>
 
