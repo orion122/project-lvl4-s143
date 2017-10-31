@@ -10,13 +10,30 @@
             <form class="" method="POST" action="{{ route('login') }}">
                 {{ csrf_field() }}
 
-                <div class="my-2">
-                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="E-Mail Address" required autofocus>
+
+                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                    <div class="my-2">
+                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="E-Mail Address" required autofocus>
+                        @if ($errors->has('email'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                        @endif
+                    </div>
                 </div>
 
-                <div class="">
-                    <input id="password" type="password" class="form-control" name="password" placeholder="Password" required>
+
+                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                    <div class="">
+                        <input id="password" type="password" class="form-control" name="password" placeholder="Password" required>
+                        @if ($errors->has('password'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </span>
+                        @endif
+                    </div>
                 </div>
+
 
                 <div class="my-2">
                     <div class="checkbox">
@@ -26,6 +43,7 @@
                     </div>
                 </div>
 
+
                 <div class="my-3">
                     <button type="submit" class="btn btn-primary btn-block">
                         Login
@@ -34,6 +52,7 @@
                         {{--Forgot Your Password?--}}
                     {{--</a>--}}
                 </div>
+
 
             </form>
         </div>
