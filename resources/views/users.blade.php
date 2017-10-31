@@ -10,6 +10,7 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Registered At</th>
+                <th>Updated At</th>
             </tr>
             </thead>
             <tbody>
@@ -20,6 +21,7 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->created_at }}</td>
+                    <td>{{ $user->updated_at }}</td>
                 </tr>
             @endforeach
             </tbody>
