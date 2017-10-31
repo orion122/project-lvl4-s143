@@ -66,10 +66,9 @@
 
         @yield('content')
 
-        <hr class="footer my-4"/>
 
-        <footer class="footer">
-                <span class="text-muted">&copy; SuperNinja 2017</span>
+        <footer class="footer container text-center">
+            <span class="text-muted">&copy; SuperNinja 2017</span>
         </footer>
 </div>
 
