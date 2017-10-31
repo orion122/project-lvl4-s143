@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="my-3">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary btn-block">
                         Login
                     </button>
                     {{--<a class="btn" href="{{ route('password.request') }}">--}}
