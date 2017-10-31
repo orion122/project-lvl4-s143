@@ -20,7 +20,7 @@
                     <li class="nav-item {{ Request::path() == '/' ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('index') }}">Home</a>
                     </li>
-                    <li class="nav-item {{ Request::path() == 'users.index' ? 'active' : '' }}">
+                    <li class="nav-item {{ Request::path() == 'users' ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('users.index') }}">Users</a>
                     </li>
                 </ul>
