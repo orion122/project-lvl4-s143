@@ -14,9 +14,9 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($users as $user)
+            @foreach($users as $key => $user)
                 <tr>
-                    <th scope="row">{{ $user->id }}</th>
+                    <th scope="row">{{ $users->firstItem() + $key }}</th>
                     {{--<td><a href="domains/{{ $item->id }}">{{ $item->name }}</a></td>--}}
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
