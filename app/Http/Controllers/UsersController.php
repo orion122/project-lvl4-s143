@@ -90,7 +90,7 @@ class UsersController extends Controller
     }
 
 
-    public function validateInput($data)
+    private function validateInput($data)
     {
         return $data->validate([
             'name' => 'required|string|max:255'
