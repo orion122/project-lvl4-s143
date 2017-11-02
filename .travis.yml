@@ -5,6 +5,5 @@ php:
 install:
   - composer self-update
   - make install
-  - make migrate_local
 
 script: make lint test

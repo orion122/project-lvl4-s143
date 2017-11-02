@@ -10,8 +10,5 @@ test:
 run:
 	php artisan serve
 
-migrate_heroku:
+migrate:
 	heroku run php artisan migrate
-
-migrate_local:
-	php artisan migrate
