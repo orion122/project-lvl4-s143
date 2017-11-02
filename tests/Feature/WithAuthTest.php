@@ -4,31 +4,34 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class WithAuthTest extends TestCase
 {
-    use RefreshDatabase;
+    use DatabaseMigrations;
 
     public $user;
 
 
-    public function setUp()
-    {
-        parent::setUp();
-        $this->user = factory(\App\User::class)->create();
-    }
-
-
-    public function tearDown()
-    {
-        $this->user->delete();
-        parent::tearDown();
-    }
+//    public function setUp()
+//    {
+//        parent::setUp();
+//        $this->user = factory(\App\User::class)->create();
+//    }
+//
+//
+//    public function tearDown()
+//    {
+//        $this->user->delete();
+//        parent::tearDown();
+//    }
 
 
     public function testRoot()
     {
-        $response = $this->actingAs($this->user)->get('/');
+        $user = self::getUser();
+
+        $response = $this->actingAs($user)->get('/');
 
         $response->assertStatus(200);
     }
@@ -36,7 +39,9 @@ class WithAuthTest extends TestCase
 
     public function testLogin()
     {
-        $response = $this->actingAs($this->user)->get('/login');
+        $user = self::getUser();
+
+        $response = $this->actingAs($user)->get('/login');
 
         $response->assertRedirect('/');
     }
@@ -44,7 +49,9 @@ class WithAuthTest extends TestCase
 
     public function testRegister()
     {
-        $response = $this->actingAs($this->user)->get('/register');
+        $user = self::getUser();
+
+        $response = $this->actingAs($user)->get('/register');
 
         $response->assertRedirect('/');
     }
@@ -52,8 +59,18 @@ class WithAuthTest extends TestCase
 
     public function testUsers()
     {
-        $response = $this->actingAs($this->user)->get('/users');
+        $user = self::getUser();
+
+        $response = $this->actingAs($user)->get('/users');
 
         $response->assertStatus(200);
+    }
+
+
+    private function getUser()
+    {
+        $user = factory(\App\User::class)->create();
+
+        return $user;
     }
 }
