@@ -4,11 +4,10 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class WithAuthTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     public $user;
 
