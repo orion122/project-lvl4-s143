@@ -71,10 +71,15 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        if ($this->validateInput($request)) {
-            $user->update(['name' => $request['name']]);
-            return Redirect::back()->with('message', 'Successful!');
-        }
+        $request->validate([
+            'name' => 'required|string|max:255'
+        ]);
+
+        $user->name = $request['name'];
+
+        $user->save();
+
+        return Redirect::back()->with('message', 'Successful!');
     }
 
     /**
@@ -87,13 +92,5 @@ class UsersController extends Controller
     {
         $user->delete();
         return Redirect::back();
-    }
-
-
-    private function validateInput($data)
-    {
-        return $data->validate([
-            'name' => 'required|string|max:255'
-        ]);
     }
 }
