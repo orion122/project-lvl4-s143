@@ -44,7 +44,8 @@
 
                 </form>
 
-                <form class="" method="POST" action="{{ route('users.destroy', Auth::user()->id) }}">
+                <form class="" method="POST" action="{{ route('users.destroy', Auth::user()->id) }}"
+                      data-confirm="Are you sure you want to delete your account?">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
 
@@ -63,4 +64,5 @@
             </div>
         </div>
     </div>
+
 @endsection
