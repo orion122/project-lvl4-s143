@@ -5,7 +5,7 @@
         <div class="card col-md-4 my-3 mx-auto">
             <div class="card-block">
 
-                <form class="" method="POST" action="{{ route('users.update', Auth::user()->id) }}">
+                <form class="" method="POST" action="{{ route('users.update', Auth::user()) }}">
                     {{ csrf_field() }}
                     {{ method_field('PATCH') }}
 
@@ -44,7 +44,7 @@
 
                 </form>
 
-                <form class="" method="POST" action="{{ route('users.destroy', Auth::user()->id) }}"
+                <form class="" method="POST" action="{{ route('users.destroy', Auth::user()) }}"
                       data-confirm="Are you sure you want to delete your account?">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
