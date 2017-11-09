@@ -18,10 +18,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-//Route::get('/home', 'HomeController@index')->name('home');
-
-//Route::get('/users', 'UsersController@users')->middleware('auth')->name('users');
-
-Route::resource('/users', 'UsersController')->middleware('auth');
-
-//Route::post('/account/{id}', 'AccountController@update')->name('account.update');
+Route::group(['middleware' => 'auth'], function () {
+    Route::resources([
+        'users' => 'UsersController',
+        'tasks' => 'TasksController'
+    ]);
+});

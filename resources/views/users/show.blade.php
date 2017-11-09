@@ -5,7 +5,7 @@
         <div class="card col-md-4 my-3 mx-auto">
             <div class="card-block">
 
-                <form class="" method="POST" action="{{ route('users.update', Auth::user()) }}">
+                <form class="" method="POST" action="{{ route('users.update', $id) }}">
                     {{ csrf_field() }}
                     {{ method_field('PATCH') }}
 
@@ -14,7 +14,7 @@
                     <div class="form-group row">
                         <label for="example-text-input" class="col-3 col-form-label">Name:</label>
                         <div class="col-8">
-                            <input class="form-control" name="name" type="text" value="{{ Auth::user()->name }}" id="example-text-input">
+                            <input class="form-control" name="name" type="text" value="{{ \App\User::find($id)->name }}" id="example-text-input">
 
                             @if ($errors->has('name'))
                                 <span class="help-block">
@@ -29,12 +29,12 @@
                         <div class="form-group row">
                             <label for="example-text-input" class="col-3 col-form-label">E-mail:</label>
                             <div class="col-8">
-                                <input class="form-control" name="email" type="text" value="{{ Auth::user()->email }}" id="example-text-input">
+                                <input class="form-control" name="email" type="text" value="{{ \App\User::find($id)->email }}" id="example-text-input">
                             </div>
                         </div>
                     </fieldset>
 
-                    <input type="hidden" name="id" value="{{ Auth::user()->id }}">
+                    <input type="hidden" name="id" value="{{ $id }}">
 
                     <div class="my-3">
                         <button type="submit" class="btn btn-primary btn-block">
@@ -44,7 +44,7 @@
 
                 </form>
 
-                <form class="" method="POST" action="{{ route('users.destroy', Auth::user()) }}"
+                <form class="" method="POST" action="{{ route('users.destroy', \App\User::find($id)) }}"
                       data-confirm="Are you sure you want to delete your account?">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
