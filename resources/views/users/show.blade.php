@@ -2,67 +2,26 @@
 
 @section('content')
     <div class="container">
-        <div class="card col-md-4 my-3 mx-auto">
-            <div class="card-block">
-
-                <form class="" method="POST" action="{{ route('users.update', $id) }}">
-                    {{ csrf_field() }}
-                    {{ method_field('PATCH') }}
-
-                    <h2 class="card-title my-3">Account</h2>
-
-                    <div class="form-group row">
-                        <label for="example-text-input" class="col-3 col-form-label">Name:</label>
-                        <div class="col-8">
-                            <input class="form-control" name="name" type="text" value="{{ \App\User::find($id)->name }}" id="example-text-input">
-
-                            @if ($errors->has('name'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('name') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-                    </div>
-
-
-                    <fieldset disabled>
-                        <div class="form-group row">
-                            <label for="example-text-input" class="col-3 col-form-label">E-mail:</label>
-                            <div class="col-8">
-                                <input class="form-control" name="email" type="text" value="{{ \App\User::find($id)->email }}" id="example-text-input">
-                            </div>
-                        </div>
-                    </fieldset>
-
-                    <input type="hidden" name="id" value="{{ $id }}">
-
-                    <div class="my-3">
-                        <button type="submit" class="btn btn-primary btn-block">
-                            Edit account
-                        </button>
-                    </div>
-
-                </form>
-
-                <form class="" method="POST" action="{{ route('users.destroy', \App\User::find($id)) }}"
-                      data-confirm="Are you sure you want to delete your account?">
-                    {{ csrf_field() }}
-                    {{ method_field('DELETE') }}
-
-                    <div class="my-3">
-                        <button type="submit" class="btn btn-block btn-sm">
-                            Remove account
-                        </button>
-                    </div>
-                </form>
-
-                @if(session()->has('message'))
-                    <div class="alert alert-success">
-                        {{ session()->get('message') }}
-                    </div>
-                @endif
-            </div>
-        </div>
+        <h1 class="my-2">Users</h1>
+        <table class="table table-striped ">
+            <thead class="thead-light">
+            <tr>
+                {{--<th>#</th>--}}
+                <th>Name</th>
+                <th>Email</th>
+                <th>Registered At</th>
+                <th>Updated At</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {{--<th scope="row">{{ $users->firstItem() + $key }}</th>--}}
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->email }}</td>
+                    <td>{{ $user->created_at }}</td>
+                    <td>{{ $user->updated_at }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-
 @endsection

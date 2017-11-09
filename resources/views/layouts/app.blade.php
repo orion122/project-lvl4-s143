@@ -64,7 +64,8 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('users.show', Auth::user()->id) }}">Account</a>
+                                    <a class="dropdown-item" href="{{ route('users.show', Auth::user()->id) }}">Show Account</a>
+                                    <a class="dropdown-item" href="{{ route('users.edit', Auth::user()) }}">Edit Account</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
