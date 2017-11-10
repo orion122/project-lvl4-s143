@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\TaskStatus;
 use App\User;
 use App\Task;
 use App\Tag;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use function PHPSTORM_META\type;
 
 class TasksController extends Controller
 {
@@ -16,10 +18,44 @@ class TasksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tasks = Task::orderBy('created_at', 'desc')->paginate(5);
-        return view('tasks.index')->with('tasks', $tasks);
+        $tasks = (new Task)->newQuery();
+
+        if ($request->creator) {
+            $tasks->where('creator', $request->creator);
+        }
+        if ($request->assignedTo) {
+            $tasks->where('assignedTo', $request->assignedTo);
+        }
+        if ($request->status) {
+            $tasks->where('status', $request->status);
+        }
+        if ($request->tag_id) {
+            $tag = (new Tag())->setTable('task_tags')->newQuery();
+            $tag->where('tag_id', $request->tag_id);
+
+            $task_ids = [];
+
+            foreach ($tag->get() as $item) {
+                array_push($task_ids, $item->task_id);
+            }
+
+            $tasks->find($task_ids);
+        }
+
+        $tasks = $tasks->orderBy('created_at', 'desc')->paginate(5);
+
+        $statuses = TaskStatus::all();
+        $users = User::all();
+        $tags = Tag::all();
+
+        return view('tasks.index')->with([
+            'tasks' => $tasks,
+            'statuses' => $statuses,
+            'users' => $users,
+            'tags' => $tags
+        ]);
     }
 
     /**
