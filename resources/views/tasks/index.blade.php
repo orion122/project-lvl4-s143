@@ -38,7 +38,11 @@
                         <select name="status">
                             <option></option>
                             @foreach($statuses as $key => $status)
-                                <option value="{{ $status->id }}">{{ $status->name }}</option>
+                                <option value="{{ $status->id }}"
+                                        @if ($status->id == Request::input('status'))
+                                        selected
+                                        @endif
+                                >{{ $status->name }}</option>
                             @endforeach
                         </select>
                     </td>
@@ -46,7 +50,11 @@
                         <select name="creator">
                             <option></option>
                             @foreach($users as $key => $user)
-                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                <option value="{{ $user->id }}"
+                                        @if ($user->id == Request::input('creator'))
+                                        selected
+                                        @endif
+                                >{{ $user->name }}</option>
                             @endforeach
                         </select>
                     </td>
@@ -54,7 +62,11 @@
                         <select name="assignedTo">
                             <option></option>
                             @foreach($users as $key => $user)
-                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                <option value="{{ $user->id }}"
+                                        @if ($user->id == Request::input('assignedTo'))
+                                        selected
+                                        @endif
+                                >{{ $user->name }}</option>
                             @endforeach
                         </select>
                     </td>
@@ -62,7 +74,12 @@
                         <select name="tag_id">
                             <option></option>
                             @foreach($tags as $key => $tag)
-                                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                <option value="{{ $tag->id }}"
+                                        @if ($tag->id == Request::input('tag_id'))
+                                            selected
+                                        @endif
+                                >{{ $tag->name }}
+                                </option>
                             @endforeach
                         </select>
                     </td>
