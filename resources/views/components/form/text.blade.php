@@ -1,7 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: ramazan
- * Date: 12.11.17
- * Time: 10:13
- */
+<div class="form-group row">
+    {{ Form::label($name, $labelValue, ['class' => 'col-3 col-form-label', 'required']) }}
+    {{ Form::text($name, $nameValue, ['class' => 'form-control col-8', 'required']) }}
+</div>

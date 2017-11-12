@@ -12,52 +12,32 @@
 
                     <div class="form-group row">
                         <label for="name" class="col-3 col-form-label">Name:</label>
-                        <div class="col-8">
-                            <input class="form-control" name="name" type="text" id="name" required>
+                            <input class="form-control col-8" name="name" type="text" id="name" required>
 
                             @if ($errors->has('name'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('name') }}</strong>
                                 </span>
                             @endif
-                        </div>
                     </div>
 
 
                     <div class="form-group row">
                         <label for="description" class="col-3 col-form-label">Description:</label>
-                        <div class="col-8">
-                            <textarea class="form-control" name="description" id="description" cols="" rows=""></textarea>
+                            <textarea class="form-control col-8" name="description" id="description" cols="" rows=""></textarea>
 
                             @if ($errors->has('name'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('name') }}</strong>
                                 </span>
                             @endif
-                        </div>
                     </div>
 
-                    {{--<div class="form-group row">
-                        <label for="status" class="col-3 col-form-label">Status:</label>
-                        <div class="col-8">
-
-                            <select class="form-control" name="status" id="status" readonly="readonly">
-                                <option value="1">New</option>
-                            </select>
-
-                            @if ($errors->has('status'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('status') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-                    </div>--}}
 
                     <div class="form-group row">
                         <label for="assignedTo" class="col-3 col-form-label">Assigned To:</label>
-                        <div class="col-8">
 
-                            <select class="form-control" name="assignedTo" id="assignedTo">
+                            <select class="form-control col-8" name="assignedTo" id="assignedTo">
                                 <option value="{{ Auth::user()->id }}">{{ Auth::user()->name }} ({{ Auth::user()->email }})</option>
                                 @foreach($users as $user)
                                     <option value="{{ $user->id }}">{{ $user->name }} ({{ $user->email }})</option>
@@ -69,13 +49,11 @@
                                     <strong>{{ $errors->first('assignedTo') }}</strong>
                                 </span>
                             @endif
-                        </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="tags" class="col-3 col-form-label">Tags:</label>
-                        <div class="col-8">
-                            <input class="form-control" name="tags" type="text" id="tags" required>
+                            <input class="form-control col-8" name="tags" type="text" id="tags" required>
 
                             @if ($errors->has('tags'))
                                 <span class="help-block">
@@ -83,9 +61,9 @@
                                 </span>
                             @endif
                         </div>
-                    </div>
 
-                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                    <input type="hidden" name="creator" value="{{ Auth::user()->id }}">
+                    <input type="hidden" name="status" value="1">
 
                     <div class="my-3">
                         <button type="submit" class="btn btn-primary btn-block">
@@ -94,6 +72,8 @@
                     </div>
 
                 </form>
+
+
 
                 @if(session()->has('message'))
                     <div class="alert alert-success">

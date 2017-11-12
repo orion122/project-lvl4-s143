@@ -21,11 +21,10 @@
             @foreach($tasks as $key => $task)
                 <tr>
                     <th scope="row">{{ $tasks->firstItem() + $key }}</th>
-                    {{--<td><a href="domains/{{ $item->id }}">{{ $item->name }}</a></td>--}}
                     <td><a href="{{ route('tasks.show', $task->id) }}" >{{ $task->name }}</a></td>
                     <td>{{ $task->taskStatus->name }}</td>
-                    <td><a href="{{ route('users.show', $task->owner->id) }}">{{ $task->owner->name }}</a></td>
-                    <td><a href="{{ route('users.show', $task->assigned->id) }}">{{ $task->assigned->name }}</a></td>
+                    <td><a href="{{ route('users.show', $task->owner->id) }}">{{ $task->owner->name }} ({{ $task->owner->email }})</a></td>
+                    <td><a href="{{ route('users.show', $task->assigned->id) }}">{{ $task->assigned->name }} ({{ $task->assigned->email }})</a></td>
                     <td>{{ implode(', ', $task->tags->pluck('name')->all()) }}</td>
                     <td>{{ $task->created_at }}</td>
                 </tr>
@@ -35,7 +34,7 @@
                     <td></td>
                     <td></td>
                     <td>
-                        <select name="status">
+                        <select name="status" class="form-control">
                             <option></option>
                             @foreach($statuses as $key => $status)
                                 <option value="{{ $status->id }}"
@@ -47,31 +46,31 @@
                         </select>
                     </td>
                     <td>
-                        <select name="creator">
+                        <select name="creator" class="form-control">
                             <option></option>
                             @foreach($users as $key => $user)
                                 <option value="{{ $user->id }}"
                                         @if ($user->id == Request::input('creator'))
                                         selected
                                         @endif
-                                >{{ $user->name }}</option>
+                                >{{ $user->name }} ({{ $user->email }})</option>
                             @endforeach
                         </select>
                     </td>
                     <td>
-                        <select name="assignedTo">
+                        <select name="assignedTo" class="form-control">
                             <option></option>
                             @foreach($users as $key => $user)
                                 <option value="{{ $user->id }}"
                                         @if ($user->id == Request::input('assignedTo'))
                                         selected
                                         @endif
-                                >{{ $user->name }}</option>
+                                >{{ $user->name }} ({{ $user->email }})</option>
                             @endforeach
                         </select>
                     </td>
                     <td>
-                        <select name="tag_id">
+                        <select name="tag_id" class="form-control">
                             <option></option>
                             @foreach($tags as $key => $tag)
                                 <option value="{{ $tag->id }}"

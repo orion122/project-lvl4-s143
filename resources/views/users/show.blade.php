@@ -6,7 +6,6 @@
         <table class="table table-striped ">
             <thead class="thead-light">
             <tr>
-                {{--<th>#</th>--}}
                 <th>Name</th>
                 <th>Email</th>
                 <th>Registered At</th>
@@ -15,7 +14,6 @@
             </thead>
             <tbody>
                 <tr>
-                    {{--<th scope="row">{{ $users->firstItem() + $key }}</th>--}}
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->created_at }}</td>

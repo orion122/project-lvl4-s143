@@ -17,10 +17,7 @@
             </tr>
             </thead>
             <tbody>
-            {{--@foreach($tasks as $key => $task)--}}
                 <tr>
-                    {{--<th scope="row">{{ $tasks->firstItem() + $key }}</th>--}}
-                    {{--<td><a href="domains/{{ $item->id }}">{{ $item->name }}</a></td>--}}
                     <td>{{ $task->name }}</td>
                     <td>{{ $task->description }}</td>
                     <td>{{ $task->taskStatus->name }}</td>
@@ -30,9 +27,8 @@
                     <td>{{ $task->created_at }}</td>
                     <td>{{ $task->updated_at }}</td>
                 </tr>
-            {{--@endforeach--}}
             </tbody>
         </table>
-        {{--{{ $tasks->links() }}--}}
+        <a class="btn btn-block btn-primary" href="{{ route('tasks.edit', $task) }}">Edit Task</a>
     </div>
 @endsection

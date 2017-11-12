@@ -46,9 +46,9 @@ class UsersController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        return view('users.show')->with(['message' => '', 'user' => User::find($id)]);
+        return view('users.show')->with(['message' => '', 'user' => $user]);
     }
 
     /**
@@ -69,13 +69,11 @@ class UsersController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
         $request->validate([
             'name' => 'required|string|max:255'
         ]);
-
-        $user = User::find($id);
 
         $user->name = $request['name'];
 
@@ -90,10 +88,9 @@ class UsersController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $user = User::find($id);
         $user->delete();
-        return Redirect::back();
+        return Redirect::route('index');
     }
 }

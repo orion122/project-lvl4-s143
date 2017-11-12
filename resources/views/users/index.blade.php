@@ -17,8 +17,7 @@
             @foreach($users as $key => $user)
                 <tr>
                     <th scope="row">{{ $users->firstItem() + $key }}</th>
-                    {{--<td><a href="domains/{{ $item->id }}">{{ $item->name }}</a></td>--}}
-                    <td><a href="{{ route('users.show', $user->id) }}">{{ $user->name }}</a></td>
+                    <td><a href="{{ route('users.show', $user) }}">{{ $user->name }}</a></td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->created_at }}</td>
                     <td>{{ $user->updated_at }}</td>
