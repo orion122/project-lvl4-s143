@@ -55,9 +55,16 @@ class TasksController extends Controller
 
     public function create()
     {
-        $users = User::all();
 
-        return view('tasks.create')->with('users', $users);
+        $users = User::all();
+        $usersIDsNamesEmails = $this->getCollectionDataForSelect(User::all(), 'email');
+        $statusesIDsNames = $this->getCollectionDataForSelect(TaskStatus::all());
+
+        return view('tasks.create')->with([
+            'users' => $users,
+            'namesAndEmails' => $usersIDsNamesEmails,
+            'statuses' => $statusesIDsNames
+        ]);
     }
 
 
