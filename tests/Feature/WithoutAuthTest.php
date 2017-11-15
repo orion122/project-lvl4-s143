@@ -42,4 +42,12 @@ class WithoutAuthTest extends TestCase
 
         $response->assertRedirect('/login');
     }
+
+
+    public function testTasks()
+    {
+        $response = $this->get('/tasks');
+
+        $response->assertRedirect('/login');
+    }
 }

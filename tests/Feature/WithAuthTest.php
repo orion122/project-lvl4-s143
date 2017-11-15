@@ -13,20 +13,6 @@ class WithAuthTest extends TestCase
     public $user;
 
 
-//    public function setUp()
-//    {
-//        parent::setUp();
-//        $this->user = factory(\App\User::class)->create();
-//    }
-//
-//
-//    public function tearDown()
-//    {
-//        $this->user->delete();
-//        parent::tearDown();
-//    }
-
-
     public function testRoot()
     {
         $user = self::getUser();
@@ -62,6 +48,16 @@ class WithAuthTest extends TestCase
         $user = self::getUser();
 
         $response = $this->actingAs($user)->get('/users');
+
+        $response->assertStatus(200);
+    }
+
+
+    public function testTasks()
+    {
+        $user = self::getUser();
+
+        $response = $this->actingAs($user)->get('/tasks');
 
         $response->assertStatus(200);
     }
