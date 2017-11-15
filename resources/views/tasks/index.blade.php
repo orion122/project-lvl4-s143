@@ -3,6 +3,11 @@
 @section('content')
     <div class="container">
         <h1 class="my-2">Tasks</h1>
+        @if(session()->has('message'))
+            <div class="alert alert-success">
+                {{ session()->get('message') }}
+            </div>
+        @endif
         <form class="" method="GET" action="{{ route('tasks.index') }}">
         <table class="table table-striped ">
 

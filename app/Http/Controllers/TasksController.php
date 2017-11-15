@@ -27,13 +27,12 @@ class TasksController extends Controller
             $tasks->where('status', $request->status);
         }
         if ($request->tag_id) {
-            $tag = (new Tag())->setTable('task_tags')->newQuery();
-            $tag->where('tag_id', $request->tag_id);
-
             $task_ids = [];
 
-            foreach ($tag->get() as $item) {
-                array_push($task_ids, $item->task_id);
+            foreach (Task::all() as $task) {
+                if(in_array($request->tag_id, $task->tags->pluck('id')->toArray())) {
+                    $task_ids[] = $task->id;
+                }
             }
 
             $tasks->find($task_ids);
@@ -77,7 +76,7 @@ class TasksController extends Controller
             $task->tags()->attach($tag->id);
         }
 
-        return Redirect::back()->with('message', 'Successful!');
+        return Redirect::route('tasks.index')->with('message', 'Successful!');
     }
 
 
