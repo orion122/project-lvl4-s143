@@ -30,7 +30,7 @@ class TasksController extends Controller
             $task_ids = [];
 
             foreach (Task::all() as $task) {
-                if(in_array($request->tag_id, $task->tags->pluck('id')->toArray())) {
+                if (in_array($request->tag_id, $task->tags->pluck('id')->toArray())) {
                     $task_ids[] = $task->id;
                 }
             }
