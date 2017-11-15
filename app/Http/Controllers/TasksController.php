@@ -88,33 +88,8 @@ class TasksController extends Controller
 
     public function edit(Task $task)
     {
-        $users = User::all();
-        $usersIDs = $users->pluck('id')->toArray();
-        $usersNames = $users->pluck('name')->toArray();
-        $usersEmails = $users->pluck('email')->toArray();
-
-        $usersIDsNamesEmails = array_reduce(
-            array_keys($usersIDs),
-            function ($acc, $num) use ($usersIDs, $usersNames, $usersEmails) {
-                $acc[$usersIDs[$num]] = "$usersNames[$num] ($usersEmails[$num])";
-                return $acc;
-            },
-            []
-        );
-
-
-        $statuses = TaskStatus::all();
-        $statusesIDs = $statuses->pluck('id')->toArray();
-        $statusesNames = $statuses->pluck('name')->toArray();
-
-        $statusesIDsNames = array_reduce(
-            array_keys($statusesIDs),
-            function ($acc, $num) use ($statusesIDs, $statusesNames) {
-                $acc[$statusesIDs[$num]] = $statusesNames[$num];
-                return $acc;
-            },
-            []
-        );
+        $usersIDsNamesEmails = $this->getCollectionDataForSelect(User::all(), 'email');
+        $statusesIDsNames = $this->getCollectionDataForSelect(TaskStatus::all());
 
 
         return view('tasks.edit')->with([
@@ -161,5 +136,32 @@ class TasksController extends Controller
             'assignedTo'    => 'required|exists:users,id',
             'tags'          => 'required|string|max:255',
         ]);
+    }
+
+
+    private function prepareForSelect($ids, $arg1, $arg2 = null)
+    {
+        return array_reduce(
+            array_keys($ids),
+            function ($acc, $num) use ($ids, $arg1, $arg2) {
+                if (is_null($arg2)) {
+                    $acc[$ids[$num]] = "$arg1[$num]";
+                } else {
+                    $acc[$ids[$num]] = "$arg1[$num] ($arg2[$num])";
+                }
+                return $acc;
+            },
+            []
+        );
+    }
+
+
+    private function getCollectionDataForSelect($collection, $field1 = null)
+    {
+        $ids = $collection->pluck('id')->toArray();
+        $array1 = $collection->pluck('name')->toArray();
+        $array2 = is_null($field1) ? null : $collection->pluck($field1)->toArray();
+
+        return $this->prepareForSelect($ids, $array1, $array2);
     }
 }
