@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
+    protected $fillable = [
+        'name', 'description', 'status', 'creator', 'assignedTo'
+    ];
+
+
     public function owner()
     {
         return $this->belongsTo('\App\User', 'creator', 'id');

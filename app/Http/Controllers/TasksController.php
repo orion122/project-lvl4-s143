@@ -67,11 +67,7 @@ class TasksController extends Controller
         $this->validation($request);
 
         $task = new Task;
-
-        $task->name = $request->name;
-        $task->description = $request->description;
-        $task->creator = $request->creator;
-        $task->assignedTo = $request->assignedTo;
+        $task->fill($request->all());
         $task->save();
 
         $inputTags = explode(',', $request->tags);
@@ -133,12 +129,7 @@ class TasksController extends Controller
     public function update(Request $request, Task $task)
     {
         $this->validation($request);
-
-        $task->name = $request->name;
-        $task->description = $request->description;
-        $task->creator = $request->creator;
-        $task->assignedTo = $request->assignedTo;
-        $task->status = $request->status;
+        $task->fill($request->all());
         $task->save();
 
         $inputTags = explode(',', $request->tags);
