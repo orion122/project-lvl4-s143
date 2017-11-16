@@ -14,7 +14,7 @@ class WithAuthTest extends TestCase
 
     public function testRoot()
     {
-        $user = self::getUser();
+        $user = $this->getUser();
 
         $response = $this->actingAs($user)->get('/');
 
@@ -24,7 +24,7 @@ class WithAuthTest extends TestCase
 
     public function testLogin()
     {
-        $user = self::getUser();
+        $user = $this->getUser();
 
         $response = $this->actingAs($user)->get('/login');
 
@@ -34,7 +34,7 @@ class WithAuthTest extends TestCase
 
     public function testRegister()
     {
-        $user = self::getUser();
+        $user = $this->getUser();
 
         $response = $this->actingAs($user)->get('/register');
 
@@ -44,7 +44,7 @@ class WithAuthTest extends TestCase
 
     public function testUsers()
     {
-        $user = self::getUser();
+        $user = $this->getUser();
 
         $response = $this->actingAs($user)->get('/users');
 
@@ -54,7 +54,7 @@ class WithAuthTest extends TestCase
 
     public function testTasks()
     {
-        $user = self::getUser();
+        $user = $this->getUser();
 
         $response = $this->actingAs($user)->get('/tasks');
 
