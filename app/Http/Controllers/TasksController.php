@@ -146,29 +146,19 @@ class TasksController extends Controller
     }
 
 
-    private function prepareForSelect($ids, $arg1, $arg2 = null)
+    private function getCollectionDataForSelect($collection, $arg = null)
     {
+        $ids = $collection->pluck('id')->toArray();
+        $array1 = $collection->pluck('name')->toArray();
+        $array2 = is_null($arg) ? null : $collection->pluck($arg)->toArray();
+
         return array_reduce(
             array_keys($ids),
-            function ($acc, $num) use ($ids, $arg1, $arg2) {
-                if (is_null($arg2)) {
-                    $acc[$ids[$num]] = "$arg1[$num]";
-                } else {
-                    $acc[$ids[$num]] = "$arg1[$num] ($arg2[$num])";
-                }
+            function ($acc, $num) use ($ids, $array1, $array2) {
+                $acc[$ids[$num]] = is_null($array2) ? $array1[$num] : "$array1[$num] ($array2[$num])";
                 return $acc;
             },
             []
         );
-    }
-
-
-    private function getCollectionDataForSelect($collection, $field1 = null)
-    {
-        $ids = $collection->pluck('id')->toArray();
-        $array1 = $collection->pluck('name')->toArray();
-        $array2 = is_null($field1) ? null : $collection->pluck($field1)->toArray();
-
-        return $this->prepareForSelect($ids, $array1, $array2);
     }
 }
