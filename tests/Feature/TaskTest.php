@@ -122,22 +122,10 @@ class TaskTest extends TestCase
 
     public function testRemoveTask()
     {
-        $user = factory(User::class)->create();
-        $task = factory(Task::class)->make();
-        $tag = factory(Tag::class)->make();
-
+        $user = factory(User::class)->make();
+        $task = factory(Task::class)->create();
 
         $this->actingAs($user);
-
-
-        $this->post("/tasks", [
-            'name' => $task->name,
-            'description' => $task->description,
-            'status' => $task->status,
-            'creator' => $task->creator,
-            'assignedTo' => $task->assignedTo,
-            'tags' => $tag->name
-        ])->assertRedirect('/tasks');
 
 
         $this->post("/tasks/{$task->id}", [
