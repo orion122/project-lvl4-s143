@@ -5,7 +5,7 @@ lint:
 	composer run-script phpcs -- --standard=PSR2 routes app/Http tests
 
 test:
-	phpunit
+	vendor/bin/phpunit
 
 run:
 	php artisan serve
